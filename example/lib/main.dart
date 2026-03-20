@@ -2,26 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app_badger_plus/flutter_app_badger_plus.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
-  _MyAppState createState() => new _MyAppState();
+  State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
   String _appBadgeSupported = 'Unknown';
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     initPlatformState();
   }
 
-  initPlatformState() async {
+  Future<void> initPlatformState() async {
     String appBadgeSupported;
     try {
-      bool res = await FlutterAppBadgerPlus.isAppBadgeSupported();
+      final bool res = await FlutterAppBadgerPlus.isAppBadgeSupported();
       if (res) {
         appBadgeSupported = 'Supported';
       } else {
@@ -43,28 +45,29 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      home: new Scaffold(
-        appBar: new AppBar(
-          title: new Text('Plugin example app'),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Plugin example app'),
         ),
-        body: new SizedBox.expand(
-          child: new Column(
+        body: SizedBox.expand(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              new Text('Badge supported: $_appBadgeSupported\n'),
-              new ElevatedButton(
-                child: new Text('Add badge'),
+              Text('Badge supported: $_appBadgeSupported\n'),
+              ElevatedButton(
                 onPressed: () {
                   _addBadge();
                 },
+                child: const Text('Add badge'),
               ),
-              new ElevatedButton(
-                  child: new Text('Remove badge'),
-                  onPressed: () {
-                    _removeBadge();
-                  }),
+              ElevatedButton(
+                onPressed: () {
+                  _removeBadge();
+                },
+                child: const Text('Remove badge'),
+              ),
             ],
           ),
         ),
