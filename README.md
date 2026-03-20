@@ -1,5 +1,7 @@
 # Flutter App Badger Plus plugin (UNMAINTAINED)
 
+## 技术支持邮箱(1539841933@qq.com)。
+
 [![Pub](https://img.shields.io/pub/v/flutter_app_badger_plus.svg)](https://pub.dev/packages/flutter_app_badger_plus)
 
 This plugin for [Flutter](https://flutter.io) adds the ability to change the badge of the app in the launcher.
